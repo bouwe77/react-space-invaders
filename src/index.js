@@ -16,7 +16,10 @@ class App extends React.Component {
 class Animation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { angle: 0 };
+    this.state = {
+      //angle: 0,
+      player: { x: 0, y: 0, width: 10, height: 10 }
+    };
     this.updateAnimationState = this.updateAnimationState.bind(this);
   }
 
@@ -25,7 +28,14 @@ class Animation extends React.Component {
   }
 
   updateAnimationState() {
-    this.setState(prevState => ({ angle: prevState.angle + 1 }));
+    this.setState(prevState => ({
+      player: {
+        x: prevState.player.x + 1,
+        y: prevState.player.y,
+        width: prevState.player.width,
+        height: prevState.player.height
+      }
+    }));
     this.rAF = requestAnimationFrame(this.updateAnimationState);
   }
 
@@ -34,31 +44,27 @@ class Animation extends React.Component {
   }
 
   render() {
-    return <Canvas angle={this.state.angle} />;
+    return <Canvas player={this.state.player} />;
   }
 }
 
 class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
-    this.saveContext = this.saveContext.bind(this);
-  }
-
-  saveContext(ctx) {
+  saveContext = ctx => {
     this.ctx = ctx;
-  }
+  };
 
   componentDidUpdate() {
-    const { angle } = this.props;
+    //const { player } = this.props;
     const width = this.ctx.canvas.width;
     const height = this.ctx.canvas.height;
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.clearRect(0, 0, width, height);
-    this.ctx.translate(width / 2, height / 2);
-    this.ctx.rotate((angle * Math.PI) / 180);
+    //this.ctx.translate(width / 2, height / 2);
+    //this.ctx.rotate((angle * Math.PI) / 180);
     this.ctx.fillStyle = "#4397AC";
-    this.ctx.fillRect(-width / 4, -height / 4, width / 2, height / 2);
+    //    this.ctx.fillRect(-width / 4, -height / 4, width / 2, height / 2);
+    this.ctx.fillRect(10, 10, 10, 10);
     this.ctx.restore();
   }
 
