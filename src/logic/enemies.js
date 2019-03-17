@@ -6,7 +6,7 @@ export default class enemies {
 
   createEnemy = () => {
     const speed = 0.5,
-      width = 10,
+      width = 20,
       height = 10;
 
     return { x: 0, y: 10, width, height, color: "red", speed };
@@ -18,7 +18,11 @@ export default class enemies {
       if (enemy.x + enemy.width > this.horizontalWidth || enemy.x < 0) {
         speed = speed * -1;
       }
-      return { ...enemy, x: enemy.x + speed, speed };
+      return {
+        ...enemy,
+        x: enemy.x + speed,
+        speed
+      };
     });
 
     this.enemies = updatedEnemies;
