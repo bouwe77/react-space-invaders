@@ -1,5 +1,6 @@
 import React from "react";
 
+import player from "../logic/player";
 import enemies from "../logic/enemies";
 
 import Canvas from "./Canvas";
@@ -8,10 +9,11 @@ export default class Animation extends React.Component {
   constructor(props) {
     super(props);
 
-    this.enemies = new enemies(300);
+    this.player = new player();
+    this.enemies = new enemies(100);
 
     this.state = {
-      player: { x: 200, y: 380, width: 30, height: 15, color: "black" },
+      player: this.player.getPlayer(),
       enemies: this.enemies.getUpdatedEnemies()
     };
   }
