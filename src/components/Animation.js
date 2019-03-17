@@ -31,6 +31,8 @@ export default class Animation extends React.Component {
   }
 
   render() {
-    return <Canvas player={this.state.player} />;
+    var sprites = [this.state.player];
+
+    return <Canvas sprites={sprites} />;
   }
 }
