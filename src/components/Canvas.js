@@ -26,16 +26,6 @@ export default class Canvas extends React.Component {
       );
     }
 
-    //  this.ctx.fillStyle = "red";
-    // this.ctx.fillRect(sprites[0].x, sprites[0].y, sprites[0].width, sprites[0].height);
-    //  this.ctx.fillStyle = "blue";
-    // this.ctx.fillRect(
-    //   sprites[1].x + 30,
-    //   sprites[1].y + 50,
-    //   sprites[1].width,
-    //   sprites[1].height
-    // );
-
     this.ctx.restore();
   }
 

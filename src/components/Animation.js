@@ -1,16 +1,18 @@
 import React from "react";
 
+import enemies from "../logic/enemies";
+
 import Canvas from "./Canvas";
 
 export default class Animation extends React.Component {
   constructor(props) {
     super(props);
+
+    this.enemies = new enemies(300);
+
     this.state = {
-      player: { x: 0, y: 0, width: 10, height: 10, color: "yellow" },
-      enemies: [
-        { x: 10, y: 10, width: 15, height: 5, color: "red" },
-        { x: 50, y: 16, width: 20, height: 12, color: "green" }
-      ]
+      player: { x: 200, y: 380, width: 30, height: 15, color: "black" },
+      enemies: this.enemies.getUpdatedEnemies()
     };
   }
 
@@ -19,15 +21,8 @@ export default class Animation extends React.Component {
   }
 
   updateAnimationState = () => {
-    this.setState(prevState => ({
-      player: {
-        x: prevState.player.x + 0.5,
-        y: prevState.player.y,
-        width: prevState.player.width,
-        height: prevState.player.height,
-        color: this.state.player.color
-      }
-    }));
+    this.setState(prevState => ({ enemies: this.enemies.getUpdatedEnemies() }));
+
     this.rAF = requestAnimationFrame(this.updateAnimationState);
   };
 
